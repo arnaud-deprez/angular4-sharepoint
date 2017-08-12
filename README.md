@@ -50,8 +50,8 @@ webpack-visualizer-plugin
 write-file-webpack-plugin
 xml2js
 ```
-1. Create the webpack configuration in webpack folder
-1. Add commands in package.json: 
+2. Create the webpack configuration in webpack folder
+3. Add commands in package.json: 
 ```json
 "scripts": {
     "cleanup": "rimraf target/{aot,www}",
@@ -65,4 +65,4 @@ xml2js
     "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js"
 }
 ```
-1. Add src/postcss.config.js
+4. Add src/postcss.config.js
