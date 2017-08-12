@@ -1,28 +1,68 @@
-# HelloWorldSp2
+# HelloWorldSp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.7.
+This project has been initially generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.7.
 
-## Development server
+This aims to be a seed project to create an angular application hosted on a SharePoint online site.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## App generation
 
-## Code scaffolding
+This app has been generated thanks to: 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    ng new hello-world-sp --style scss --routing true
 
-## Build
+## Change from the angular 4 template
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Here we will use a trick to host the application on SharePoint online, we will integrate our angular app 
+into a SharePoint Wiki page in ASP.NET.
 
-## Running unit tests
+This template is already configured for you in index.aspx.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Then we needed to change the way the default angular cli build the app to include the ASP.NET page.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. Add those package as dev dependencies (in package.json)
+```sh
+angular2-template-loader
+awesome-typescript-loader
+browser-sync
+browser-sync-webpack-plugin
+css-loader
+extract-text-webpack-plugin
+file-loader
+html-loader
+html-webpack-plugin
+ngc-webpack
+node-sass
+postcss-loader
+replace-webpack-plugin
+rimraf
+sass-loader
+sourcemap-istanbul-instrumenter-loader
+string-replace-webpack-plugin
+style-loader
+to-string-loader
+tslint-loader
+web-app-manifest-loader
+webpack
+webpack-dev-server
+webpack-merge
+webpack-notifier
+webpack-visualizer-plugin
+write-file-webpack-plugin
+xml2js
+```
+1. Create the webpack configuration in webpack folder
+1. Add commands in package.json: 
+```json
+"scripts": {
+    "cleanup": "rimraf target/{aot,www}",
+    "clean-www": "rimraf target//www/app/{src,target/}",
+    "webpack:dev": "yarn run webpack-dev-server -- --config webpack/webpack.dev.js --progress --inline --hot --profile --port=9060",
+    "webpack:build:main": "yarn run webpack -- --config webpack/webpack.dev.js --progress --profile",
+    "webpack:build": "yarn run cleanup && yarn run webpack:build:main",
+    "webpack:prod:main": "yarn run webpack -- --config webpack/webpack.prod.js --progress --profile",
+    "webpack:prod": "yarn run cleanup && yarn run webpack:prod:main && yarn run clean-www",
+    "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js"
+}
+```
+1. Add src/postcss.config.js
