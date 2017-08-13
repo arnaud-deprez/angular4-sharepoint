@@ -16,7 +16,7 @@
                                 <asp:Content ContentPlaceHolderId="PlaceHolderAdditionalPageHead" runat="server">
                                     <base href="/sites/ESB2/DBFISNUC/CertificatApp/">
                                     <meta name="CollaborationServer" content="SharePoint Team Web Site" />
-                                    <!-- <link href="global-sass.[hash].css" rel="stylesheet"> -->
+                                    <link href="styles.[hash].bundle.css" rel="stylesheet" />
                                     <SharePoint:ScriptBlock runat="server">
                                         var navBarHelpOverrideKey = "WSSEndUser";
                                     </SharePoint:ScriptBlock>
@@ -42,11 +42,10 @@
                                             </div>
                                         </app-root>
                                         <!-- Place the compiled Js below-->
-                                        <script type="text/javascript" src="app/manifest.[hash].bundle.js"></script>
+                                        <script type="text/javascript" src="app/inline.[hash].bundle.js"></script>
                                         <script type="text/javascript" src="app/polyfills.[hash].bundle.js"></script>
                                         <script type="text/javascript" src="app/vendor.[hash].bundle.js"></script>
                                         <script type="text/javascript" src="app/main.[hash].bundle.js"></script>
-                                        <script type="text/javascript" src="app/global.[hash].bundle.js"></script>
                                     </div>
                                     <SharePoint:VersionedPlaceHolder UIVersion="4" runat="server">
                                         <SharePoint:SPRibbonButton id="btnWikiEdit" RibbonCommand="Ribbon.WikiPageTab.EditAndCheckout.SaveEdit.Menu.SaveEdit.Edit" runat="server" Text="edit" />

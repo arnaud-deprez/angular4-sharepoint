@@ -96,6 +96,6 @@ module.exports = webpackMerge(commonConfig, {
             entry: 'src/index.aspx',
             hash: '[hash]',
             output: 'target/www/index.aspx'
-        }),
+        })
     ]
 });
